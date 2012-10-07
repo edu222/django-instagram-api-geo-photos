@@ -1,6 +1,7 @@
 # Django settings for udla_web_app project.
 import dj_database_url
 
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -10,8 +11,16 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+#Attempt to connect to the remote database from the local dev server.
+#If local_settings is not found then, assume working from deployed site.
+try:
+    from local_settings import DB_DICT
+except ImportError:
+    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+    pass    
+else:
+    DATABASES = DB_DICT
 
-DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
