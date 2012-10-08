@@ -16,8 +16,7 @@ MANAGERS = ADMINS
 try:
     from local_settings import DB_DICT
 except ImportError:
-    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
-    pass    
+    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}    
 else:
     DATABASES = DB_DICT
 
