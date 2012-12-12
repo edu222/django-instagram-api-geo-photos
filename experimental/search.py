@@ -9,17 +9,38 @@ CONFIG = {
 unauthenticated_api = client.InstagramAPI(**CONFIG)
 
 
+#Zao: lat=-0.192040, lng=-78.487632
+#Quicentro: lat=-0.176575,lng=-78.479613
 
-#popular = unauthenticated_api.media_popular()
-search = unauthenticated_api.media_search(4,12,-0.176575,-78.479613)
-for item in search:
-	print item
+search = unauthenticated_api.location_search(lat=-0.192040, lng=-78.487632,distance=5000)
+#import ipdb; ipdb.set_trace()
+# for media in search:
+# 	print media.images
 
-photos = []
-for media in search:
-	photos.append('<img src="%s"/>' % media.images['thumbnail'].url)
 
-print ''.join(photos)
+
+# Quicentro
+#location = unauthenticated_api.location(location_id=471650)
+#print location.name
+
+
+# Zao Oriental cusine id: 8844889
+
+location_photos = unauthenticated_api.location_recent_media(count=18,location_id=471650)
+lp=location_photos
+import ipdb; ipdb.set_trace()
+#print location_photos
+
+
+
+
+
+
+# photos = []
+# for media in place:
+# 	photos.append('<img src="%s"/>' % media.images['thumbnail'].url)
+
+# print ''.join(photos)
 
 #follows =  unauthenticated_api.user_follows(4024302)
 #print search
