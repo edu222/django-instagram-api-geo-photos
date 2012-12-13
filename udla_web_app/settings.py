@@ -1,8 +1,5 @@
 # Django settings for udla_web_app project.
 import dj_database_url
-import os
-PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -115,12 +112,14 @@ ROOT_URLCONF = 'udla_web_app.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'udla_web_app.wsgi.application'
 
+import os
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/Users/educalvachi/djcode/udla_web_app/templates',
-    os.path.join(PROJECT_PATH, '/udla_web_app/templates/'),
+    os.path.join(PROJECT_DIR, "templates"),
 )
 
 INSTALLED_APPS = (
