@@ -120,7 +120,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/Users/educalvachi/djcode/udla_web_app/templates',
-    os.path.join(PROJECT_PATH, '/app/udla_web_app/templates/'),
+    os.path.join(PROJECT_PATH, '/udla_web_app/templates/'),
 )
 
 INSTALLED_APPS = (
