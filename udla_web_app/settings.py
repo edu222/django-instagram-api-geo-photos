@@ -1,5 +1,7 @@
 # Django settings for udla_web_app project.
 import dj_database_url
+import os
+PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 
 DEBUG = True
@@ -118,6 +120,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/Users/educalvachi/djcode/udla_web_app/templates',
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -130,6 +133,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'core',
+    'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
