@@ -4,7 +4,8 @@ class Location (models.Model):
 	name = models.CharField(max_length=100)
 	instagram_id = models.IntegerField(max_length=100) 
 	city = models.ForeignKey('City')
-	slug = models.SlugField();
+	slug = models.SlugField()
+	category = models.ForeignKey('Category')
 
 	def __unicode__(self):
 		return self.name
@@ -21,3 +22,9 @@ class Country(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+
+class Category(models.Model):
+	name = models.CharField(max_length=100)
+	def __unicode__(self):
+		return self.name	
