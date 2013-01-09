@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'core.views.app_index'),
     url(r'^lugares/(?P<locationslug>.*)/$','core.views.location_page'),
+    (r'^accounts/', include('userena.urls')),
 
 )

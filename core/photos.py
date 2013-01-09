@@ -10,36 +10,44 @@ CONFIG = {
 #Creating Instagram unauthenticated API object.
 api = client.InstagramAPI(**CONFIG)
 
-# Returns a list of places (names and ids) that are located within a distance of the provided lat and lng
-#sample coordinates: near Quicentro Shopping: lat=-0.176575,lng=-78.479613
-def search_by_place(lat,lng,distance):
+
+def search_places_by_latlng(lat,lng,distance):
+	"""Returns a list of places (names and ids) that are located within a distance of the provided lat and lng
+sample coordinates: near Quicentro Shopping: (-0.176575,-78.479613,5000)"""
 	
 	#Searching location
 	search = api.location_search(lat=lat, lng=lng,distance=distance)
-	location_id_list = []
 	
 	#Creating a list of loction id's based on search results
+	location_id_list = []
+
 	for location in search:
 		location_id_list.append(location.id)
 
 	#Creating a list of location names and id's corresponding to the search.
 	places = []
 	for location_id in location_id_list:
-		places.append(api.location(location_id).name,": ", location_id, "\n")	
+		location_string = api.location(location_id).name,location_id
+		places.append(location_string)	
 
 	return places
 
-# Returns a location name given a location_id
+
 def get_location_name(location_id):
+	"""Returns a location name given a location_id"""
 	location = api.location(location_id=location_id)
 	return location.name
 
 
-#Returns a list of most recent photos for the given location
 def get_location_photos(location_id, count):
+	"""Returns a list of most recent photos for the given location"""	
 	location_photos = api.location_recent_media(location_id=location_id, count=count)
 	photos = []
 	for media in location_photos[0]:
 		photos.append(media.images['standard_resolution'].url)
 	return photos	
+
+
+print search_places_by_latlng(-0.18058746955729177,-78.46804618835449,5000)
+
 
