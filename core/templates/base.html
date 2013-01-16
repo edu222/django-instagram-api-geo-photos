@@ -1,3 +1,4 @@
+  {% load i18n %}
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -29,11 +30,18 @@
 
       <ul class="nav nav-pills">
         <li class="active">
-          <a href="#">Home</a>
+          <a href="{% url index %}">{% trans "Home" %}</a> 
         </li>
-        <li><a href="/accounts/signup/">Registrarse</a></li>
-        <li><a href="/accounts/signin/">Iniciar Sesión</a></li>
-        <li><a href="/accounts/signout/">Cerrar Sesión</a></li>
+        {% block user_info %}
+          {% if user.is_authenticated %}
+            <li>{% trans "Logged in" %}: {{ user.username }} </li>
+            <li><a href="{% url auth_logout %}">{% trans "Log out" %}</a> </li>
+            <li><a href="{% url auth_password_change %}">{% trans "Change password" %}</a> </li>
+          {% else %}
+            <li><a href="{% url auth_login %}">﻿﻿{% trans "Log in" %}</a> </li>
+          {% endif %}
+          <hr />
+        {% endblock %}
       </ul>
  
       
@@ -56,9 +64,9 @@
           <ul class="nav nav-list">
             {% for category in categories %}
               <li class="nav-header">{{category}}</li>
-              {% for location in locations %}
-                {% ifequal category location.category %}
-                  <li><a href="#">{{location}}</a></li>
+              {% for ltion in locations_all %}
+                {% ifequal category ltion.category %}
+                  <li><a href="/lugares/{{ltion.slug}}">{{ltion}}</a></li>
                 {% endifequal %}
               {% endfor %}  
           {% endfor %}

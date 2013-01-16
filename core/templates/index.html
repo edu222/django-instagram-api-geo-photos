@@ -1,3 +1,4 @@
+  {% load i18n %}
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -29,11 +30,26 @@
 
       <ul class="nav nav-pills">
         <li class="active">
-          <a href="#">Home</a>
-        </li>
-        <li><a href="/accounts/signup/">Registrarse</a></li>
-        <li><a href="/accounts/signin/">Iniciar Sesión</a></li>
-        <li><a href="/accounts/signout/">Cerrar Sesión</a></li>
+          <a href="{% url index %}">{% trans "Home" %}</a>
+        {% block user_info %}
+          
+          {% if user.is_authenticated %}
+            <div class="btn-group ">
+              <button class="btn">My Account</button>
+              <button class="btn dropdown-toggle" data-toggle="dropdown">﻿
+              <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+              <!-- dropdown menu links -->
+                <li> {% trans "Logged in" %}: {{ user.username }} </li>
+                <li><a href="{% url auth_logout %}">{% trans "Log out" %}</a></li>
+                <li><a href="{% url auth_password_change %}">{% trans "Change password" %}</a></li>
+              </ul>
+            </div>  
+          {% else %}
+            <li><a href="{% url auth_login %}">﻿﻿{% trans "Log in" %}</a> </li> 
+          {% endif %}
+        {% endblock %}
       </ul>
  
       
@@ -58,7 +74,7 @@
               <li class="nav-header">{{category}}</li>
               {% for location in locations %}
                 {% ifequal category location.category %}
-                  <li><a href="#">{{location}}</a></li>
+                  <li><a href="/lugares/{{location.slug}}">{{location}}</a></li>
                 {% endifequal %}
               {% endfor %}  
           {% endfor %}

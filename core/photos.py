@@ -48,6 +48,6 @@ def get_location_photos(location_id, count):
 	return photos	
 
 
-print search_places_by_latlng(-0.18058746955729177,-78.46804618835449,5000)
+#print search_places_by_latlng(-0.18058746955729177,-78.46804618835449,5000)
 
 

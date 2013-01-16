@@ -118,14 +118,15 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/educalvachi/djcode/udla_web_app/templates',
+    '/Users/educalvachi/djcode/udla_web_app/core/templates',
+    '/Users/educalvachi/djcode/udla_web_app/core/templates/registration',
     os.path.join(PROJECT_DIR, "templates"),
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.auth',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -133,34 +134,27 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'core',
     'south',
-    'userena',
-    'guardian',
-    'easy_thumbnails',
-    'accounts',
+    'registration',
+    # 'guardian',
+    # 'easy_thumbnails',
+    # 'accounts',
 
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
 
-AUTHENTICATION_BACKENDS = (
-    'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
-    )
+ACCOUNT_ACTIVATION_DAYS = 2 # One-week activation window; you may, of course, use a different value.
+EMAIL_HOST = 'localhost'
+DEFAULT_FROM_EMAIL = 'educalvachi@gmail.com'
+LOGIN_REDIRECT_URL = '/'
 
-ANONYMOUS_USER_ID = -1
-AUTH_PROFILE_MODULE = 'accounts.MyProfile'
-LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
-LOGIN_URL = '/accounts/signin/'
-LOGOUT_URL = '/accounts/signout/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+# AUTHENTICATION_BACKENDS = (
+#     'guardian.backends.ObjectPermissionBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+#     )
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'test1@mailinator.com'
-EMAIL_HOST_PASSWORD = ''
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
