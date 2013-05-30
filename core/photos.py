@@ -8,7 +8,7 @@ CONFIG = {
     'redirect_uri': 'http://localhost:8515/oauth_callback'
 }
 
-#Creating Instagram unauthenticated API object.
+#Creating Instagram unauthenticated API object with the config.
 api = client.InstagramAPI(**CONFIG)
 
 
