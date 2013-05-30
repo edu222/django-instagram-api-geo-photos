@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', 'core.views.app_index', name='index'),
     url(r'^lugares/(?P<locationslug>.*)/$','core.views.location_page'),
+    url(r'^search/', 'core.views.search_locations'),
     url(r'^accounts/login/$',  login),
     url(r'^accounts/logout/$', logout),
 )

@@ -1,10 +1,16 @@
 from instagram import client, subscriptions
-from core_keys import core_client_secret
+
+try:
+	from core_keys import insta_secret
+except ImportError:
+	insta_secret = S3Client(
+		os.environ['INSTAGRAMSECRET'], os.environ['INSTAGRAMSECRET'])
+	
 
 #Instagram app configuration parameters
 CONFIG = {
     'client_id': '83d1b794dfc24f5588378f88be67c586',
-    'client_secret': core_client_secret,
+    'client_secret': insta_secret,
     'redirect_uri': 'http://localhost:8515/oauth_callback'
 }
 
