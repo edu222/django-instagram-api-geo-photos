@@ -1,5 +1,6 @@
 venv
 */local_settings.py
+*/core_keys.py
 *.pyc
 .DS_Store
 experimental/search.py

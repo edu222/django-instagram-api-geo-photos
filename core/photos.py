@@ -1,9 +1,10 @@
 from instagram import client, subscriptions
+from core_keys import core_client_secret
 
 #Instagram app configuration parameters
 CONFIG = {
     'client_id': '83d1b794dfc24f5588378f88be67c586',
-    'client_secret': 'cab4fd643e2d42e082f1a40ee3f51c4a',
+    'client_secret': core_client_secret,
     'redirect_uri': 'http://localhost:8515/oauth_callback'
 }
 
@@ -12,8 +13,9 @@ api = client.InstagramAPI(**CONFIG)
 
 
 def search_places_by_latlng(lat,lng,distance):
-	"""Returns a list of places (names and ids) that are located within a distance of the provided lat and lng
-sample coordinates: near Quicentro Shopping: (-0.176575,-78.479613,5000)"""
+	"""Returns a list of places (names and ids) that are located within
+	   a distance of the provided lat and lng.
+       Sample coordinates near 'Quicentro mall':(-0.176575,-78.479613,5000)"""
 	
 	#Searching location
 	search = api.location_search(lat=lat, lng=lng,distance=distance)
@@ -34,14 +36,20 @@ sample coordinates: near Quicentro Shopping: (-0.176575,-78.479613,5000)"""
 
 
 def get_location_name(location_id):
-	"""Returns a location name given a location_id"""
-	location = api.location(location_id=location_id)
-	return location.name
+    """Returns a location name given a location_id"""
+    try:
+        location_id = int(location_id)
+    except ValueError:
+        return None
+    
+    location = api.location(location_id=location_id)
+    return location.name
 
 
 def get_location_photos(location_id, count):
 	"""Returns a list of most recent photos for the given location"""	
-	location_photos = api.location_recent_media(location_id=location_id, count=count)
+	location_photos = api.location_recent_media(location_id=location_id,
+												count=count)
 	photos = []
 	for media in location_photos[0]:
 		photos.append(media.images['standard_resolution'].url)

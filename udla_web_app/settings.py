@@ -11,18 +11,19 @@ ADMINS = (
 MANAGERS = ADMINS
 
 #Attempt to connect to the remote database from the local dev server.
-#If local_settings is not found then, assume working from deployed site.
+#If local_settings is not found then, assume working from deployed site heroku.
 try:
     from local_settings import DB_DICT
 except ImportError:
-    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}    
+    DATABASES = {'default': dj_database_url.config(
+                                default='postgres://localhost')}    
 else:
     DATABASES = DB_DICT
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': '',                      # Or path to database file if using sqlite3.
+#         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': 'db',                      # Or path to database file if using sqlite3.
 #         'USER': '',                      # Not used with sqlite3.
 #         'PASSWORD': '',                  # Not used with sqlite3.
 #         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -143,7 +144,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
-ACCOUNT_ACTIVATION_DAYS = 2 # One-week activation window; you may, of course, use a different value.
+ACCOUNT_ACTIVATION_DAYS = 2 # activation window in days; 
 EMAIL_HOST = 'localhost'
 DEFAULT_FROM_EMAIL = 'educalvachi@gmail.com'
 LOGIN_REDIRECT_URL = '/'
@@ -184,3 +185,5 @@ LOGGING = {
         },
     }
 }
+
+SOUTH_TESTS_MIGRATE = False
