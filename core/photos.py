@@ -3,8 +3,7 @@ from instagram import client, subscriptions
 try:
 	from core_keys import insta_secret
 except ImportError:
-	insta_secret = S3Client(
-		os.environ['INSTAGRAMSECRET'], os.environ['INSTAGRAMSECRET'])
+	insta_secret = os.environ['INSTAGRAMSECRET']
 	
 
 #Instagram app configuration parameters
