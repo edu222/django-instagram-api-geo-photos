@@ -1,3 +1,4 @@
+import os
 from instagram import client, subscriptions
 
 try:
