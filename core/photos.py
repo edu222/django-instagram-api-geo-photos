@@ -40,6 +40,28 @@ def search_places_by_latlng(lat,lng,distance):
 
 	return places
 
+def search_places_by_foursquare_v2_id(foursquare_v2_id):
+	"""Returns a list of places (names and ids) that are located within
+	   a distance of the provided lat and lng."""
+
+	#Searching location
+	search = api.location_search(foursquare_v2_id=foursquare_v2_id)
+	
+	#Creating a list of loction id's based on search results
+	location_id_list = []
+
+	for location in search:
+		location_id_list.append(location.id)
+
+	#Creating a list of location names and id's corresponding to the search.
+	places = []
+	for location_id in location_id_list:
+		location_string = api.location(location_id).name,location_id
+		places.append(location_string)	
+
+	return places
+
+
 
 def get_location_name(location_id):
     """Returns a location name given a location_id"""
@@ -62,6 +84,7 @@ def get_location_photos(location_id, count):
 	return photos	
 
 
-#print search_places_by_latlng(-0.18058746955729177,-78.46804618835449,5000)
+print search_places_by_foursquare_v2_id(
+	foursquare_v2_id='4b9941f1f964a5202c6e35e3')
 
 

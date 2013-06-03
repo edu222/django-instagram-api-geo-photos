@@ -19,7 +19,7 @@
     <div class="container">
       
       <!-- Be sure to leave the brand out there if you want it shown -->
-      <a class="brand" href="/">Lugares Chéveres</a>
+      <a class="brand" href="/">Instagram-Quito</a>
 
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -30,8 +30,9 @@
 
       <ul class="nav nav-pills">
         <li class="active">
-          <a href="{% url index %}">{% trans "Home" %}</a> 
+          <!-- <a href="{% url index %}">{% trans "Home" %}</a> -->
         </li>
+        {% comment %}
         {% block user_info %}
           {% if user.is_authenticated %}
             <li>{% trans "Logged in" %}: {{ user.username }} </li>
@@ -42,6 +43,7 @@
           {% endif %}
           <hr />
         {% endblock %}
+         {% endcomment %}
       </ul>
  
       
