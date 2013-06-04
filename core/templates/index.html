@@ -92,7 +92,7 @@
                   de la ciudad. </h3>
                   <h5>Mira las fotos de algunos de los lugares:</h5>
                   {% for location in locations %}
-                    <a href="/lugares/{{location.slug}}">{{location}}</a>
+                    <button class="btn" type="button"><a href="/lugares/{{location.slug}}">{{location}}</a></button>
                   {% endfor %}  
                   <h4>Como funciona?</h4>
                   <h5>Instragram-Quito usa el poder de <a href="http://www.python.org/">Python</a>, 
