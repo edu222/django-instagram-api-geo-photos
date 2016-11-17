@@ -1,0 +1,8 @@
+{
+  "name": "Udla Instagram Web App",
+  "description": "Udla Instagram Web App",
+  "image": "heroku/python",
+  "repository": "https://github.com/edu222/udla_web_app",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}

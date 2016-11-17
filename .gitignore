@@ -8,3 +8,5 @@ venv
 experimental/search.py
 notes.txt
 hi.txt
+staticfiles
+db.sqlite3
